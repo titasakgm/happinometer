@@ -1,0 +1,85 @@
+#encoding: UTF-8
+
+<div class="row">
+  <div style="text-align:center;padding-bottom:10px;">
+    <span>
+      <button id="print_btn" class="btn btn-primary">Print</button>
+      <button id="bmi_btn" class="btn">
+        <img src="/assets/bmi-3d.png" height="30" class="img-round"/>
+      </button
+    </span>
+  </div>
+
+  <div id="score_dim">
+  <table class="table" width="100%">
+    <tr>
+      <th></th>
+      <th><img src="/assets/dim1.png"/></th>
+      <th><img src="/assets/dim2.png"/></th>
+      <th><img src="/assets/dim3.png"/></th>
+      <th><img src="/assets/dim4.png"/></th>
+      <th><img src="/assets/dim5.png"/></th>
+      <th><img src="/assets/dim6.png"/></th>
+      <th><img src="/assets/dim7.png"/></th>
+      <th><img src="/assets/dim8.png"/></th>
+      <th><img src="/assets/dim9.png"/></th>
+      <th class="success" style="vertical-align:middle;">
+        <font size="4">ความสุข<br/>ภาพรวม</font>
+      </th>
+    </tr>
+    <tr>
+      <th>ประเภท</th>
+      <th>สุขภาพกายดี</th>
+      <th>ผ่อนคลายดี</th>
+      <th>น้ำใจดี</th>
+      <th>จิตวิญญาณดี</th>
+      <th>ครอบครัวดี</th>
+      <th>สังคมดี</th>
+      <th>ใฝ่รู้ดี</th>
+      <th>สุขภาพเงินดี</th>
+      <th>การงานดี</th>
+      <th class="warning">&nbsp;&nbsp;&nbsp;&nbsp;ค่าเฉลี่ย</th>
+    </tr>
+
+    <% @scores.each do |score| %>
+    <tr class="info">
+      <% (0..score.length-1).each do |j| %>
+        <% if j == 0 %>
+            <td><%= score[0] %></td>
+        <% elsif j < score.length-1 %>
+          <% if score[j] < 25.0 %>
+            <th><img src="/assets/happy1x.png" width="40"/></th>
+          <% elsif score[j] < 50.0 %>
+            <th><img src="/assets/happy2x.png" width="40"/></th>
+          <% elsif score[j] < 75.0 %>
+            <th><img src="/assets/happy3x.png" width="40"/></th>
+          <% elsif score[j] >= 75.0 %>
+            <th><img src="/assets/happy4x.png" width="40"/></th>
+          <% end %>
+        <% else %>
+          <% if score[j] < 25.0 %>
+            <th class="warning"><img src="/assets/happy1x.png" width="40"/></th>
+          <% elsif score[j] < 50.0 %>
+            <th class="warning"><img src="/assets/happy2x.png" width="40"/></th>
+          <% elsif score[j] < 75.0 %>
+            <th class="warning"><img src="/assets/happy3x.png" width="40"/></th>
+          <% elsif score[j] >= 75.0 %>
+            <th class="warning"><img src="/assets/happy4x.png" width="40"/></th>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tr>
+    <% end %>
+
+    <tr>
+      <td colspan="10">&nbsp;</th>
+    </tr>
+
+    <tr border="0">
+      <td colspan="10"><img src="/assets/info.png"/></th>
+    </tr>
+
+  </table>
+  </div>
+</div>
+

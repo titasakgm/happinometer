@@ -1,0 +1,357 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+.buffer-top {
+  margin-top: 100px;
+}
+
+.buffer-left {
+  margin-left: -50px;
+}
+
+.margin-left {
+  margin-left: -50px;
+}
+
+.navbar-custom {
+  background-color: #206020 !important;
+}
+
+li.hover-nochange a {
+  background-color: #206020 !important;
+}
+
+.navbar-brand {
+  color: #0099ff !important;
+  font-size: 2em !important;
+}
+
+.bdr-right {
+  border-right: 0px solid #b3b3b3;
+  height: 70px;
+  text-align: center;
+}
+
+/* START OF Change the Navbar Colors/Font/Size */
+/* Adjust Menu (red) text color, (Garamond) font-family, (1.5em) font-size  */
+.navbar .nav > li > a, .navbar .nav > li > a,
+.navbar .nav > li.current-menu-item > a, 
+.navbar .nav > li.current-menu-ancestor > a {
+  color:          yellow !important;                        
+  font-family:    Garamond;
+  font-size:      1.5em;
+}
+
+ul li a { 
+  display: block;
+  /* height: 70px; */
+  /* line-height: 70px; */
+  /* text-align: center; */
+  color: red;
+}
+
+a:hover {
+  color: yellow !important;
+  background-color: #0099ff !important;
+}
+
+.q_label {
+  color:          red !important;
+  font-family:    Garamond;
+  font-size:      2em;
+}
+
+#score_tbl {
+  width: 100%;
+}
+
+.navbar {
+  position: relative;
+  height: 70px;
+}
+
+.container .navbar-nav {
+  height: 70px;
+}
+
+div.navbar-header {
+  background-color: #206020 !important;
+  height: 70px;
+}
+
+.vcenter {
+  display: inline-block;
+  vertical-align: center;
+  float: none;
+}
+
+th {
+  text-align: center !important;
+}
+
+td {
+  text-align: left;
+}
+
+.found {
+  background-color: yellow !important;
+}
+
+.table-striped>tbody>tr>th.found {
+   background-color: yellow !important;
+}
+
+.lh-35 {
+  padding-top: 10px !important;
+  height: 35px !important;
+}
+
+a:visited {
+  color: black !important;
+}
+
+.img-responsive {
+  margin: 0 auto !important;
+}
+
+.btn-xl {
+  font-size: 20px !important;
+}
+
+.show-email {
+  background-color: white;
+  line-height: 20px;
+  font-size: 1em !important;
+  margin-top: 25px;
+  margin-left: 20px;
+}
+
+div.text-center {
+  text-align: center !important;
+  width: 300px !important;
+}
+
+.text-white {
+  color: white !important;
+}
+
+.minus-top {
+  top: -100px !important;
+}
+
+.q_label span {
+  color: green !important;
+  line-height: 50px !important;
+  background-color: lightgreen !important;
+}
+
+.survey_title {
+ display: inline-block;
+ margin-bottom: 10px;
+ color: white;
+ foreground-blend-mode: overlay;
+ background: linear-gradient(to right,#ffaa00 20%,
+             #ea1688 40%, #eb2e2e 60%,#fde92e 80%,#009e54 100%);
+
+}
+
+#print_btn {
+    margin-top: 0 !important;
+    padding-top: 5px !important;
+}
+
+#bmi_btn {
+  margin-top: 0px !important;
+  height: 36px;
+  padding: 2px;
+}
+
+legend span {
+  font-size: 14px !important;
+}
+
+.title {
+    color: #107896;
+}
+
+label {
+    color: #f26d21;
+    font-size: 14px !important;
+}
+
+select[name*="answer_id"] {
+    font-size: 14px !important;
+    color: green;
+}
+
+span, label {
+    color: #f26d21;
+    font-size: 16px !important;
+}
+
+.title {
+    color: #107896;
+    font-size: 20px !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.string {
+    font-size: 18px !important;
+    color: green;
+}
+
+.q_label span {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: inline-block;
+    font-size: 20px !important;
+    color: #004D00 !important;
+    background: linear-gradient(to right, yellow, green);
+}
+
+.q_default span {
+    color: green;
+    font-size: 18px !important;
+}
+
+.q_label span {
+    font-size: 20px !important;
+}
+
+.q_grid th {
+    font-size: 16px;
+    color: green !important;
+    padding-right: 30px;
+    line-height: 20px !important;
+}
+
+input[type=radio]{
+    margin-left: 15px !important;
+}
+
+legend span {
+    color: green !important;
+    font-size: 18px !important;
+}
+
+.show-email {
+    position: absolute;
+    background-color: white;
+    font-size: 1em !important;
+    right:0;
+    top: 60px;
+}
+
+.show-email a {
+    color: white !important;
+    font-size: 1em !important;
+    margin-right: 10px;
+}
+
+select option {
+    color: red;
+    font-size: 14px;
+}
+
+select[name*="answer_id"]{
+    color: blue;
+}
+
+input.integer {
+    color:blue;
+}
+
+.center {
+    text-align: center;
+}
+
+img.center {
+    position: absolute;
+    left: -40px;
+    top: 0px;
+}
+
+.report-title {
+    font-weight: bold;
+    font-size: 20px;
+    color: green;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+#item {
+    background-color: #e6ffe6;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#item a {
+    color: white !important;
+}
+
+.sc {
+    font-size: 12px !important ;
+    font-weight: bold;
+    text-align: center;
+}
+
+.x1 {
+    color: black;
+}
+
+.x2 {
+    color: red;
+}
+
+.x3 {
+    color: blue;
+}
+
+.x4 {
+    color: green;
+}
+
+.brand img {
+    left:0;
+    right:0;
+    margin:auto;
+}
+
+.d0 { background-color: #E6FFE6 !important }
+.d1 { background-color: #F7F6B3 !important }
+.d2 { background-color: #DBEDDF !important }
+.d3 { background-color: #FCDDD3 !important }
+.d4 { background-color: #D6BD95 !important }
+.d5 { background-color: #F5D796 !important }
+.d6 { background-color: #DDD4E7 !important }
+.d7 { background-color: #E5F3FC !important }
+.d8 { background-color: #77C9F1 !important }
+.d9 { background-color: #F5BCC2 !important }
+.d10 { background-color: #E6FFE6 !important }
+
+.d0, .d10 {
+    font-weight: bold;
+    color: green;
+}
+
+table, th, td {
+    border: 1px solid #B0B0B0;
+}
+
+.fx {
+    font-family: Verdana !important;
+}

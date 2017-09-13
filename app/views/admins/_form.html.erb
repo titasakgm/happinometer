@@ -1,0 +1,338 @@
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" src="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+
+<div id="admins">
+<%= simple_form_for(@admin) do |f| %>
+  <%= f.error_notification %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+      <div class="tabbable">
+        <ul class="nav nav-pills">
+          <li class="admins active"><a href="#panel-sect1" data-toggle="pill">Office Info.</a></li>
+          <li class="admins"><a href="#panel-sect2" data-toggle="pill">Personnel Info.</a></li>
+          <li class="admins"><a href="#panel-sect3" data-toggle="pill">Admin Info.</a></li>
+          <li class="admins"><a href="#panel-sect4" data-toggle="pill">List Emails</a></li>
+          <li class="admins"><a href="#panel-sect5" data-toggle="pill">Downloads</a></li>
+          <li class="admins">
+            <%# link_to 'HPI Survey', new_hpi_survey_path, {'data-toggle' => 'pills'} %>
+            <%= link_to image_tag('/assets/hpi.png', :class => 'hpi_tab'), new_hpi_survey_path,
+               {:class => 'hpi_a', 'data-toggle' => 'pills'} %>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="panel-sect1">
+            <div class="form-inputs">
+              <table class="table">
+              <tr>
+                  <th rowspan="3" colspan="2" class="danger">
+                      <div id="map-container">
+                          <div id="map-canvas"></div>
+                      </div>
+                  </th>
+                  <td class="info">
+                      <%= f.input :hcode9, :label => "รหัสหน่วยงาน 9 หลัก", :readonly => true %>
+                  </td>
+                  <td class="info">
+                      <%= f.input :hcode5, :label => "รหัสหน่วยงาน 5 หลัก", :readonly => true, :class => "inputshort" %>
+                  </td>
+              </tr>
+              <tr class="success">
+                  <td class="success">
+                      <%= f.input :offtype, :label => "ประเภท", :readonly => true %>
+                  </td>
+                  <td class="success">
+                      <%= f.input :offname, :label => "ชื่อหน่วยงาน" %>
+                  </td>
+              </tr>
+              <tr class="warning central">
+                  <td class="warning">
+                      <%= f.input :department, :label => "กรม", :readonly => true %>
+                  </td>
+                  <td class="warning">
+                      <%= f.input :division, :label => "กอง", :readonly => true %>
+                  </td>
+              </tr>
+              <tr class="danger">
+                  <td class="danger">
+                     <%= f.input :longitude, :label => "Longitude (readonly)", :readonly => true %>
+                  </td>
+                  <td class="danger">
+                      <%= f.input :latitude, :label => "Latitude (readonly)", :readonly => true %>
+                  </td>
+              </tr>
+              <tr class="info local">
+                  <td width="25%" class="info">
+                      <%= f.input :pak, :label => "ภาค", :readonly => true %>
+                  </td>
+                  <td width="25%" class="info">
+                      <%= f.input :region, :label => "เขตสาธารณสุข", :readonly => true %>
+                  </td>
+                  <td width="25%" class="info">
+                      <%= f.input :province, :label => "จังหวัด", :readonly => true %>
+                  </td>
+                  <td width="25%" class="info">
+                      <%= f.input :ccaatt, :label => "รหัสพื้นที่" %>
+                  </td>
+              </tr>
+              <tr class="success local">
+                  <td colspan="4" class="success">
+                      <%= f.input :address, :label => "ที่อยู่", :input_html => {:size => 200} %>
+                  </td>
+              </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="panel-sect2">
+            <table class="table">
+            <tr class="info"><td class="info">
+              <div class="form-group">
+                <label for="admin_person1">
+                    จำนวนข้าราชการ
+                </label>
+                <%= f.input :person1, :label => false %>
+              </div>
+            </td></tr>
+            <tr class="success"><td class="success">
+              <div class="form-group">
+                  <label for="admin_person2">
+                      จำนวนพนักงานข้าราชการ
+                  </label>
+                  <%= f.input :person2, :label => false %>
+              </div>
+            </td></tr>
+            <tr class="warning"><td class="warning">
+              <div class="form-group">
+                <label for="admin_person3">
+                    จำนวนพนักงานกระทรวง
+                </label>
+                <%= f.input :person3, :label => false %>
+              </div>
+            </td></tr>
+            <tr class="danger"><td class="danger">
+              <div class="form-group">
+                <label for="admin_person4">
+                    จำนวนลูกจ้างประจำ
+                </label>
+                <%= f.input :person4, :label => false %>
+              </div>
+            </td></tr>
+            <tr class="info"><td class="info">
+              <div class="form-group">
+                <label for="admin_person5">
+                    จำนวนลูกจ้างชั่วคราว
+                </label>
+                <%= f.input :person5, :label => false %>
+              </div>
+            </td></tr>
+            <tr class="success"><td class="success">
+              <div class="form-group">
+                <label for="admin_personall">
+                    จำนวนรวมทั้งสิ้น
+                </label>
+                <div id="personall">
+                  <span id='admin_personall'></span>
+                </div>
+              </div>
+            </td></tr>
+            </table>
+          </div>
+
+          <div class="tab-pane fade" id="panel-sect3">
+            <table class="table">
+            <tr class="info"><td class="info">
+              <div class="form-group">
+                <label for="admin_fname">
+                Firstname
+                </label>
+                <%= f.input :fname, :label => false %>
+              </div>
+            </td></tr>
+            <tr class="success"><td class="success">
+              <div class="form-group">
+                <label for="admin_lname">
+                    Lastname
+                </label>
+                <%= f.input :lname, :label => false %>
+              </div>
+            </td></tr>
+            <tr class="warning"><td class="warning">
+              <div class="form-group">
+                <label for="admin_email">
+                    Email address
+                </label>
+                <%= f.input :email, :label => false %>
+              </div>
+            </td></tr>
+            <tr class="danger"><td class="danger">
+              <div class="form-group">
+                <label for="admin_mobile">
+                    Mobile No.
+                </label>
+                <%= f.input :mobile, :label => false %>
+              </div>
+            </td></tr>
+            <tr><td>
+              <div class="form-actions">
+                <%= f.button :submit, :class => "btn btn-success" %>
+              </div>
+            </td></tr>
+            </table>
+          </div>
+
+          <div class="tab-pane fade" id="panel-sect4">
+            <div class="col-md-8">
+            <h2 class="alert alert-warning center">รายการ Email สำหรับ HCODE:<%= @admin.hcode5 %></h2>
+
+            <span class="email_summary">
+              Registered: <%= @total %>&nbsp;&nbsp;&nbsp;
+              Completed: <%= @complete %>&nbsp;&nbsp;&nbsp;
+              <font color='red'>(In Progress:<%= @inprogress %>)</font>
+            </span>
+
+            <table class="display" id="members">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <td>Email</td>
+                  <td>Completed</td>
+                </tr>
+              </thead>
+              <tbody>
+              <% num = 0 %>
+              <% @members.each do |member| %>
+                <% num += 1 %>
+                <% if member[:completed_at] == "In progress" %>
+                  <tr style="color:red;">
+                <% else %>
+                  <tr>
+                <% end %>
+                   <th><%= sprintf("%03d", num) %></th>
+                   <td><%= member[:email] %></td>
+                  <td><%= thai_time(member[:completed_at]) %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+            </div>
+
+            <div class="col-md-4 center">
+              <table>
+                <tr><th>
+                  <span class='survey_target'>เป้าหมาย 60%</span>
+                </th></tr>
+                <tr><th>
+                  <img src='http://<%= progress_gom %>' width='480' />
+                </th></tr>
+                <tr><th>
+                  <span class='survey_total'>Total: <%= personall %> (By admin)</span>
+                </th></tr>
+                <tr><th>
+                  <span class='survey_actual'><%= progress %>%</span>
+                </th></tr>
+              </table>
+            </div>
+
+          </div>
+
+          <div class="tab-pane fade" id="panel-sect5">
+            <h2 class="alert-warning center">รายการเอกสารที่เกี่ยวข้อง</h2>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <td>Document</td>
+                  <td>Link</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ไฟล์แบบประเมิน Happinometer</td>
+                  <td><a href="ftp://happinometer.moph.go.th/pub/happinometer-update1.pdf">ftp://happinometer.moph.go.th/pub/happinometer-update1.pdf</a></td>
+                </tr>
+                <tr>
+                  <td>ไฟล์แบบประเมิน HPI (ใหม่)</td>
+                  <td><a href="ftp://happinometer.moph.go.th/pub/HPI_Survey.pdf">ftp://happinometer.moph.go.th/pub/HPI_Survey.pdf</a></td>
+                </tr>
+               <tr>
+                  <td>Export Survey Data</td>
+                  <% pass = export_info[0] %>
+                  <% hash = export_info[1] %>
+                  <td><a href="ftp://164.115.41.73/export/<%= hash %>.zip">HCODE5: <%= my_hcode5 %></a> (Password: <%= pass %>) As of <%= yesterday %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+<% end %>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#members').dataTable({
+      sPaginationType: "full_numbers",
+      bJQueryUI: true
+    });
+    $(".alert").fadeOut(3000);
+    $(".notice").fadeOut(3000);
+  });
+
+  var admin = "<%= @admin.administration %>";
+  if (admin == 'ส่วนกลาง') {
+    $('tr.local').hide();
+  } else {
+    $('tr.central').hide();
+  }
+
+  var p1 = document.getElementById('admin_person1');
+  var p2 = document.getElementById('admin_person2');
+  var p3 = document.getElementById('admin_person3');
+  var p4 = document.getElementById('admin_person4');
+  var p5 = document.getElementById('admin_person5');
+  var pall = document.getElementById('admin_personall');
+
+  function show_sum() {
+    var sumall = 0;
+    if (p1.value != "") {
+      sumall += parseInt(p1.value);
+    }
+    if (p2.value != "") {
+      sumall += parseInt(p2.value);
+    }
+    if (p3.value != "") {
+      sumall += parseInt(p3.value);
+    }
+    if (p4.value != "") {
+      sumall += parseInt(p4.value);
+    }
+    if (p5.value != "") {
+      sumall += parseInt(p5.value);
+    }
+    pall.innerHTML = sumall;
+  }
+
+  p1.addEventListener('change', function(){
+    show_sum();
+  });
+  p2.addEventListener('change', function(){
+    show_sum();
+  });
+  p3.addEventListener('change', function(){
+    show_sum();
+  });
+  p4.addEventListener('change', function(){
+    show_sum();
+  });
+  p5.addEventListener('change', function(){
+    show_sum();
+  });
+
+  show_sum();
+</script>
+

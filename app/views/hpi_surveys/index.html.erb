@@ -1,0 +1,121 @@
+<h1>Listing hpi_surveys</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Email</th>
+      <th>Hcode5</th>
+      <th>Q 01011</th>
+      <th>Q 01012</th>
+      <th>Q 01013</th>
+      <th>Q 01014</th>
+      <th>Q 01015</th>
+      <th>Q 01016</th>
+      <th>Q 01017</th>
+      <th>Q 01018</th>
+      <th>Q 01021</th>
+      <th>Q 01022</th>
+      <th>Q 01023</th>
+      <th>Q 01031</th>
+      <th>Q 01032</th>
+      <th>Q 01033</th>
+      <th>Q 01034</th>
+      <th>Q 01035</th>
+      <th>Q 01036</th>
+      <th>Q 01037</th>
+      <th>Q 0201</th>
+      <th>Q 0202</th>
+      <th>Q 0203</th>
+      <th>Q 0204</th>
+      <th>Q 0205</th>
+      <th>Q 0206</th>
+      <th>Q 0207</th>
+      <th>Q 0208</th>
+      <th>Q 0209</th>
+      <th>Q 0210</th>
+      <th>Q 0211</th>
+      <th>Q 0212</th>
+      <th>Q 0213</th>
+      <th>Q 0214</th>
+      <th>Q 0215</th>
+      <th>Q 0216</th>
+      <th>Q 0217</th>
+      <th>Q 0218</th>
+      <th>Q 0219</th>
+      <th>Q 0220</th>
+      <th>Q 0221</th>
+      <th>Q 0222</th>
+      <th>Q 0223</th>
+      <th>Q 0224</th>
+      <th>Q 0225</th>
+      <th>Q 0226</th>
+      <th>Q 0227</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hpi_surveys.each do |hpi_survey| %>
+      <tr>
+        <td><%= hpi_survey.user_id %></td>
+        <td><%= hpi_survey.email %></td>
+        <td><%= hpi_survey.hcode5 %></td>
+        <td><%= hpi_survey.q_01011 %></td>
+        <td><%= hpi_survey.q_01012 %></td>
+        <td><%= hpi_survey.q_01013 %></td>
+        <td><%= hpi_survey.q_01014 %></td>
+        <td><%= hpi_survey.q_01015 %></td>
+        <td><%= hpi_survey.q_01016 %></td>
+        <td><%= hpi_survey.q_01017 %></td>
+        <td><%= hpi_survey.q_01018 %></td>
+        <td><%= hpi_survey.q_01021 %></td>
+        <td><%= hpi_survey.q_01022 %></td>
+        <td><%= hpi_survey.q_01023 %></td>
+        <td><%= hpi_survey.q_01031 %></td>
+        <td><%= hpi_survey.q_01032 %></td>
+        <td><%= hpi_survey.q_01033 %></td>
+        <td><%= hpi_survey.q_01034 %></td>
+        <td><%= hpi_survey.q_01035 %></td>
+        <td><%= hpi_survey.q_01036 %></td>
+        <td><%= hpi_survey.q_01037 %></td>
+        <td><%= hpi_survey.q_0201 %></td>
+        <td><%= hpi_survey.q_0202 %></td>
+        <td><%= hpi_survey.q_0203 %></td>
+        <td><%= hpi_survey.q_0204 %></td>
+        <td><%= hpi_survey.q_0205 %></td>
+        <td><%= hpi_survey.q_0206 %></td>
+        <td><%= hpi_survey.q_0207 %></td>
+        <td><%= hpi_survey.q_0208 %></td>
+        <td><%= hpi_survey.q_0209 %></td>
+        <td><%= hpi_survey.q_0210 %></td>
+        <td><%= hpi_survey.q_0211 %></td>
+        <td><%= hpi_survey.q_0212 %></td>
+        <td><%= hpi_survey.q_0213 %></td>
+        <td><%= hpi_survey.q_0214 %></td>
+        <td><%= hpi_survey.q_0215 %></td>
+        <td><%= hpi_survey.q_0216 %></td>
+        <td><%= hpi_survey.q_0217 %></td>
+        <td><%= hpi_survey.q_0218 %></td>
+        <td><%= hpi_survey.q_0219 %></td>
+        <td><%= hpi_survey.q_0220 %></td>
+        <td><%= hpi_survey.q_0221 %></td>
+        <td><%= hpi_survey.q_0222 %></td>
+        <td><%= hpi_survey.q_0223 %></td>
+        <td><%= hpi_survey.q_0224 %></td>
+        <td><%= hpi_survey.q_0225 %></td>
+        <td><%= hpi_survey.q_0226 %></td>
+        <td><%= hpi_survey.q_0227 %></td>
+        <td><%= link_to 'Show', hpi_survey %></td>
+        <td><%= link_to 'Edit', edit_hpi_survey_path(hpi_survey) %></td>
+        <td><%= link_to 'Destroy', hpi_survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hpi survey', new_hpi_survey_path, {:class => "btn btn-md btn-success"} %>

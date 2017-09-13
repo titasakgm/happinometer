@@ -1,0 +1,77 @@
+// Place all the styles related to the admins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* admins tabs x 3 */
+.admins {
+  margin-top: 20px !important;
+}
+
+.hpi_tab {
+  border: 1px solid red;
+  height: 50px;
+}
+
+.hpi_a {
+  top: -20px;
+}
+
+.row.admins {
+  position: absolute;
+  left: -50px !important;
+}
+
+#admin_address {
+  width: 500px;
+}
+
+#admin_email {
+  font-size: 14px !important;
+}
+
+.survey_target {
+  color: green !important;
+  font-size: 2em !important;
+}
+
+.survey_total {
+  font-size: 1.2em !important;
+}
+
+.survey_actual {
+  font-size: 2em !important;
+  line-height: 2;
+  color: blue;
+}
+
+#admin_personall {
+  color: blue !important;
+  font-size: 2em !important;
+  background-color: lightblue !important;
+  line-height: 40px !important;
+  padding: 0 30px 0 30px !important;
+}
+
+#admin_hcode5,#admin_offname,#admin_latitude,#admin_ccaatt, #admin_address {
+  width: 100% !important;
+}
+
+#tabs-admins a {
+  color: #0066ff !important;
+  font-weight: normal;
+  background-color: lightgreen;
+  margin-top: 20px;
+}
+
+div.row.admins {
+  margin-top: 100px !important;
+}
+
+li.admins a {
+  background-color: #b3ffe6 !important;
+}
+
+li.admins.active a {
+  background-color: yellow !important;
+}
+

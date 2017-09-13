@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  fname: MyString
+  lname: MyString
+  email: MyString
+  mobile: MyString
+  hcode9: MyString
+  hcode5: MyString
+  offname: MyString
+  offtype: MyString
+  administration: MyString
+  department: MyString
+  division: MyString
+  longitude: 1.5
+  latitude: 1.5
+  person1: 1
+  person2: 1
+  person3: 1
+  person4: 1
+  person5: 1
+  personall: 1
+  pak: MyString
+  region: MyString
+  province: MyString
+  ccaatt: MyString
+  address: MyString
+
+two:
+  username: MyString
+  fname: MyString
+  lname: MyString
+  email: MyString
+  mobile: MyString
+  hcode9: MyString
+  hcode5: MyString
+  offname: MyString
+  offtype: MyString
+  administration: MyString
+  department: MyString
+  division: MyString
+  longitude: 1.5
+  latitude: 1.5
+  person1: 1
+  person2: 1
+  person3: 1
+  person4: 1
+  person5: 1
+  personall: 1
+  pak: MyString
+  region: MyString
+  province: MyString
+  ccaatt: MyString
+  address: MyString

@@ -1,0 +1,75 @@
+<h1>Listing admins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Fname</th>
+      <th>Lname</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Hcode9</th>
+      <th>Hcode5</th>
+      <th>Offname</th>
+      <th>Offtype</th>
+      <th>Administration</th>
+      <th>Department</th>
+      <th>Division</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Person1</th>
+      <th>Person2</th>
+      <th>Person3</th>
+      <th>Person4</th>
+      <th>Person5</th>
+      <th>Personall</th>
+      <th>Pak</th>
+      <th>Region</th>
+      <th>Province</th>
+      <th>Ccaatt</th>
+      <th>Address</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admins.each do |admin| %>
+      <tr>
+        <td><%= admin.username %></td>
+        <td><%= admin.fname %></td>
+        <td><%= admin.lname %></td>
+        <td><%= admin.email %></td>
+        <td><%= admin.mobile %></td>
+        <td><%= admin.hcode9 %></td>
+        <td><%= admin.hcode5 %></td>
+        <td><%= admin.offname %></td>
+        <td><%= admin.offtype %></td>
+        <td><%= admin.administration %></td>
+        <td><%= admin.department %></td>
+        <td><%= admin.division %></td>
+        <td><%= admin.longitude %></td>
+        <td><%= admin.latitude %></td>
+        <td><%= admin.person1 %></td>
+        <td><%= admin.person2 %></td>
+        <td><%= admin.person3 %></td>
+        <td><%= admin.person4 %></td>
+        <td><%= admin.person5 %></td>
+        <td><%= admin.personall %></td>
+        <td><%= admin.pak %></td>
+        <td><%= admin.region %></td>
+        <td><%= admin.province %></td>
+        <td><%= admin.ccaatt %></td>
+        <td><%= admin.address %></td>
+        <td><%= link_to 'Show', admin %></td>
+        <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
+        <td><%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Admin', new_admin_path %>

@@ -1,0 +1,230 @@
+#encoding: UTF-8
+
+<% @total = 0 %>
+<% @score = [] %>
+<% @dim.each do |avg| %>
+  <% @total += avg.to_s.to_i %>
+  <% @score.push(avg.to_s.to_i) %>
+<% end %>
+<% @score.push(@total/9.0) %>
+
+<div id="score">
+<div class="row">
+  <div style="text-align:center;padding-bottom:10px;">
+    <span>
+      <button id="print_btn" class="btn btn-primary">Print</button>
+      <button id="bmi_btn" class="btn">
+        <img src="/assets/bmi-3d.png" height="30" class="img-round"/>
+      </button
+    </span>
+  </div>
+  <div class="col-md-offset-4 col-md-4" id="my-score">
+    <div class="panel panel-info">
+      <div class="panel-heading">Average Score for
+        <% if current_user %>
+          <%= current_user.email %>
+        <% else %>
+          current_user unknown
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <table class="table-striped" id="score_tbl">
+          <thead>
+          <tr>
+            <td>Dimension</td>
+            <th>Average Score</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% n = 0 %>
+          <% @score.each do |f| %>
+          <tr>
+            <% if n < 9 %>
+              <td><%= @dims[n] %></td>
+              <th><%= "%.02f" % f %></th>
+            <% else %>
+              <th class="d10">ค่าเฉลี่ย</th>
+              <th class="d10"><%= "%.02f" % f %></th>
+            <% end %>
+            <% n += 1 %>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-offset-1 col-md-10">
+    <div id="score_graph"></div>
+  </div>
+
+  <div id="score_dim">
+  <table class="table" width="100%">
+    <tr>
+      <th><img src="/assets/dim1.png"/></th>
+      <th><img src="/assets/dim2.png"/></th>
+      <th><img src="/assets/dim3.png"/></th>
+      <th><img src="/assets/dim4.png"/></th>
+      <th><img src="/assets/dim5.png"/></th>
+      <th><img src="/assets/dim6.png"/></th>
+      <th><img src="/assets/dim7.png"/></th>
+      <th><img src="/assets/dim8.png"/></th>
+      <th><img src="/assets/dim9.png"/></th>
+      <th class="d10" style="vertical-align:middle;">
+        <font size="4">ความสุข<br/>ภาพรวม</font>
+      </th>
+    </tr>
+
+    <tr class="success">
+      <% j = 0 %>
+      <% @score.each do |avg| %>
+        <% j += 1 %>
+        <th class="d<%= j %>"><font size="4"><%= "%.02f" % avg %></font></th>
+      <% end %>
+    </tr>
+
+    <tr>
+      <th class="d1">สุขภาพกายดี</th>
+      <th class="d2">ผ่อนคลายดี</th>
+      <th class="d3">น้ำใจดี</th>
+      <th class="d4">จิตวิญญาณดี</th>
+      <th class="d5">ครอบครัวดี</th>
+      <th class="d6">สังคมดี</th>
+      <th class="d7">ใฝ่รู้ดี</th>
+      <th class="d8">สุขภาพเงินดี</th>
+      <th class="d9">การงานดี</th>
+      <th class="d10">&nbsp;&nbsp;&nbsp;&nbsp;ค่าเฉลี่ย</th>
+    </tr>
+
+    <tr class="info">
+      <% (0..9).each do |j| %>
+        <% if @score[j].to_s.to_i < 25.0 %>
+          <th class="d<%= j+1 %>"><img src="/assets/happy1x.png" width="40"/></th>
+        <% elsif @score[j].to_s.to_i < 50.0 %>
+          <th class="d<%= j+1 %>"><img src="/assets/happy2x.png" width="40"/></th>
+        <% elsif @score[j].to_s.to_i < 75.0 %>
+          <th class="d<%= j+1 %>"><img src="/assets/happy3x.png" width="40"/></th>
+        <% elsif @score[j].to_s.to_i >= 75.0 %>
+          <th class="d<%= j+1 %>"><img src="/assets/happy4x.png" width="40"/></th>
+        <% end %>
+      <% end %>
+    </tr>
+
+    <tr>
+      <td colspan="10">&nbsp;</th>
+    </tr>
+
+    <tr border="0">
+      <td colspan="10"><img src="/assets/info.png"/></th>
+    </tr>
+
+  </table>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+
+EXPORT_WIDTH = 600;
+
+var my_chart;
+
+var data = <%= @score[0..8] %>;
+
+$(function () {
+
+    my_chart = new Highcharts.chart('score_graph', {
+
+        chart: {
+
+            margin: [20, 20, 20, 20],
+            spacingTop: 0,
+            spacingBottom: 10,
+            spacingLeft: 0,
+            spacingRight: 0,
+
+            renderTo: 'container',
+            polar: true
+        },
+
+        title: {
+            text: 'YOUR HAPPINOMETER CHART',
+            x: 0
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: ['Happy Body','Happy Relax','Happy Heart','Happy Soul','Happy Family',
+                         'Happy Society','Happy Brain','Happy Money','Happy Work Life'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
+        tooltip: {
+            shared: true,
+            valuePrefix: '',
+            valueDecimals: 2
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            x: -100,
+            y: 100,
+            layout: 'vertical'
+        },
+
+        series: [{
+            name: 'Avg Score',
+            //data: <%= @dim %>,
+            data: data,
+            pointPlacement: 'on'
+        }]
+    });
+
+    scorex = [];
+    scorex = <%= @score %>;
+
+    for (var n=0; n<scorex.length-1; n++) {
+      if (scorex[n] < 25.0)
+        my_chart.series[0].data[n].graphic.attr('fill','black');
+      else if (scorex[n] < 50.0)
+        my_chart.series[0].data[n].graphic.attr('fill','red');
+      else if (scorex[n] < 75.0)
+        my_chart.series[0].data[n].graphic.attr('fill','yellow');
+      else
+        my_chart.series[0].data[n].graphic.attr('fill','green');
+    }
+});
+
+</script>
+
+<script type="text/javascript">
+
+  var print_btn = document.getElementById("print_btn");
+  print_btn.addEventListener("click", function(){
+    var avg = document.getElementById('my-score').innerHTML;
+    // remove text between bracket
+    // avg = avg.replace(/ *\([^)]*\) */g, "");
+    var svg = my_chart.container.innerHTML;
+    var html = '<html><body>' + avg + '<hr/><pre>' + svg + '</pre></body></html>';
+    var uri = "data:text/html," + encodeURIComponent(html);
+    window.print(uri);
+  });
+
+  var bmi_btn = document.getElementById("bmi_btn");
+  bmi_btn.addEventListener("click", function(){
+    window.open('http://www.bmi3d.com/calculator.html', '_blank');
+  });
+
+</script>
+

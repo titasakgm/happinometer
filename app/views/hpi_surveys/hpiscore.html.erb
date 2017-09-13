@@ -1,0 +1,202 @@
+#encoding: UTF-8
+
+<% @score = [] %>
+<% @total = 0 %>
+<% @dim.each do |avg| %>
+<% @total += avg.to_s.to_i %>
+<% @score.push(avg.to_s.to_i) %>
+<% end %>
+<% @score.push(@total/5.0) %>
+
+<div id="hpiscore">
+<div class="row">
+  <div style="text-align:center;padding-bottom:10px;">
+    <span>
+      <button id="print_hpi_btn" class="btn btn-primary">Print</button>
+    </span>
+  </div>
+
+  <div class="col-md-offset-4 col-md-4" id="my-hpiscore">
+    <div class="panel panel-info">
+      <div class="panel-heading center">Average Score for
+        <%= office_name %>
+      </div>
+      <div class="panel-body">
+        <table class="table-striped" id="hpiscore_tbl">
+        <thead>
+          <tr>
+            <td>Dimension</td>
+            <th>Average Score</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% n = 0 %>
+        <% @score.each do |f| %>
+          <tr>
+          <% if n < 5 %>
+            <td><%= @dims[n] %></td>
+            <th><%= "%.02f" % f %></th>
+          <% else %>
+            <th class="d10">ค่าเฉลี่ย</th>
+            <th class="d10"><%= "%.02f" % f %></th>
+          <% end %>
+          <% n += 1 %>
+          </tr>
+        <% end %>
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-offset-1 col-md-10">
+    <div id="hpiscore_graph"></div>
+  </div>
+
+  <div id="hpiscore_dim">
+    <table class="table" width="100%">
+      <tr>
+        <th><img src="/assets/dim7.png"/></th>
+        <th><img src="/assets/dim9.png"/></th>
+        <th><img src="/assets/dim1.png"/></th>
+        <th><img src="/assets/dim6.png"/></th>
+        <th><img  src="/assets/dim8.png"/></th>
+        <th class="d10" style="vertical-align:middle;">
+          <font size="4">องค์กรมีสุข<br/>ภาพรวม</font>
+        </th>
+      </tr>
+
+      <tr class="success">
+      <% col = [0,7,9,1,6,8,10] %>
+      <% j = 0 %>
+      <% @score.each do |avg| %>
+        <% j += 1 %>
+        <th class="d<%= col[j] %>"><font size="4"><%= "%.02f" % avg %></font></th>
+      <% end %>
+      </tr>
+
+      <tr>
+        <th class="d7">ความสำเร็จ</th>
+        <th class="d9">การบริหาร</th>
+        <th class="d1">สุขภาพกาย-ใจ</th>
+        <th class="d6">บรรยากาศ</th>
+        <th class="d8">การลงทุน</th>
+        <th class="d10">&nbsp;&nbsp;&nbsp;&nbsp;ค่าเฉลี่ย</th>
+      </tr>
+
+      <tr class="info">
+      <% col = [7,9,1,6,8,10] %>
+      <% (0..5).each do |j| %>
+        <% if @score[j] < 25.0 %>
+          <th class="d<%= col[j] %>"><img src="/assets/happy1x.png" width="40"/></th>
+        <% elsif @score[j] < 50.0 %>
+          <th class="d<%= col[j] %>"><img src="/assets/happy2x.png" width="40"/></th>
+        <% elsif @score[j] < 75.0 %>
+          <th class="d<%= col[j] %>"><img src="/assets/happy3x.png" width="40"/></th>
+        <% elsif @score[j] >= 75.0 %>
+          <th class="d<%= col[j] %>"><img src="/assets/happy4x.png" width="40"/></th>
+        <% end %>
+      <% end %>
+      </tr>
+
+      <tr>
+        <td colspan="6">&nbsp;</th>
+      </tr>
+
+      <tr border="0">
+        <td colspan="6"><img src="/assets/info.png"/></th>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+EXPORT_WIDTH = 600;
+var data = <%= @score[0..4] %>;
+
+var my_chart = new Highcharts.chart('hpiscore_graph', {
+  chart: {
+    margin: [20, 20, 20, 20],
+    spacingTop: 0,
+    spacingBottom: 10,
+    spacingLeft: 0,
+    spacingRight: 0,
+
+    renderTo: 'container',
+    polar: true,
+    type: 'area'
+  },
+
+  title: {
+    text: 'YOUR HPI CHART',
+    x: 0
+  },
+
+  pane: {
+    size: '80%'
+  },
+
+  xAxis: {
+    categories: ['Happy Success','Happy Administration','Happy Body&Mind',
+                 'Happy Atmosphere','Happy Investment'],
+    tickmarkPlacement: 'on',
+    lineWidth: 0
+  },
+
+  yAxis: {
+    gridLineInterpolation: 'polygon',
+    lineWidth: 0,
+    min: 0
+  },
+
+  tooltip: {
+    shared: true,
+    valuePrefix: '',
+    valueDecimals: 2
+  },
+
+  legend: {
+    align: 'right',
+    verticalAlign: 'top',
+    x: -100,
+    y: 100,
+    layout: 'vertical'
+  },
+
+  series: [{
+    name: 'Avg Score',
+    data: data,
+    pointPlacement: 'on'
+  }]
+});
+
+scorex = [];
+scorex = <%= @score %>;
+
+for (var n=0; n<scorex.length-1; n++) {
+  if (scorex[n] < 25.0)
+    my_chart.series[0].data[n].graphic.attr('fill','black');
+  else if (scorex[n] < 50.0)
+    my_chart.series[0].data[n].graphic.attr('fill','red');
+  else if (scorex[n] < 75.0)
+    my_chart.series[0].data[n].graphic.attr('fill','yellow');
+  else
+    my_chart.series[0].data[n].graphic.attr('fill','green');
+}
+
+</script>
+
+<script type="text/javascript">
+
+var print_hpi_btn = document.getElementById("print_hpi_btn");
+print_hpi_btn.addEventListener("click", function(){
+  var avg = document.getElementById('my-hpiscore').innerHTML;
+  var svg = my_chart.container.innerHTML;
+  var html = '<html><body>' + avg + '<hr/><pre>' + svg + '</pre></body></html>';
+  var uri = "data:text/html," + encodeURIComponent(html);
+  window.print(uri);
+});
+
+</script>

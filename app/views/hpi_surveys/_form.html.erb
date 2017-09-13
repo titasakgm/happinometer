@@ -1,0 +1,159 @@
+<div class="hpi">
+<%= simple_form_for(@hpi_survey) do |f| %>
+  <%= f.error_notification %>
+
+  <h1 class="hpi_title">HPI Survey สำหรับ <%= office_name %></h1>
+
+  <div class="form-inputs">
+    <div class="hpi_id">
+      <%= f.input :user_id, :readonly => true, :label => "User Id",
+        input_html: { value: current_user.id } %>
+      <%= f.input :email, :readonly => true, :label => "Username",
+        input_html: { value: current_user.email } %>
+      <%= f.input :hcode5, :readonly => true, :label => "รหัสหน่วยงาน",
+        input_html: { value: office_hcode5 } %>
+    </div>
+
+    <span class="hpi_topic"><%= qtext('0101') %></span>
+
+    <%= f.input :q_01011, :label => atext(563) %>
+    <%= f.input :q_01012, :label => atext(564) %>
+    <%= f.input :q_01013, :label => atext(565) %>
+    <%= f.input :q_01014, :label => atext(566) %>
+    <%= f.input :q_01015, :label => atext(567) %>
+    <%= f.input :q_01016, :label => atext(568) %>
+    <%= f.input :q_01017, :label => atext(569) %>
+    <%= f.input :q_01018, :label => false, :placeholder => atext(570) %>
+
+    <span class="hpi_topic"><%= qtext('0102') %></span>
+
+    <%= f.input :q_01021, :label => atext(572) %>
+    <%= f.input :q_01022, :label => atext(573) %>
+    <%= f.input :q_01023, :label => false, :placeholder => atext(574) %>
+
+    <span class="hpi_topic"><%= qtext('0103') %></span>
+
+    <%= f.input :q_01031, :label => atext(576) %>
+    <%= f.input :q_01032, :label => atext(577) %>
+    <%= f.input :q_01033, :label => atext(578) %>
+    <%= f.input :q_01034, :label => atext(579) %>
+    <%= f.input :q_01035, :label => atext(580) %>
+    <%= f.input :q_01036, :label => atext(581) %>
+    <%= f.input :q_01037, :label => false, :placeholder => atext(582) %>
+
+    <%= f.input :q_0201, :label => qtext('0201'),
+      :collection => coll('0201'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0202, :label => qtext('0202'),
+      :collection => coll('0202'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0203, :label => qtext('0203'),
+      :collection => coll('0203'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0204, :label => qtext('0204'),
+      :collection => coll('0204'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0205, :label => qtext('0205'),
+      :collection => coll('0205'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0206, :label => qtext('0206'),
+      :collection => coll('0206'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0207, :label => qtext('0207'),
+      :collection => coll('0207'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0208, :label => qtext('0208'),
+      :collection => coll('0208'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0209, :label => qtext('0209'),
+      :collection => coll('0209'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0210, :label => qtext('0210'),
+      :collection => coll('0210'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0211, :label => qtext('0211'),
+      :collection => coll('0211'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0212, :label => qtext('0212'),
+      :collection => coll('0212'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0213, :label => qtext('0213'),
+      :collection => coll('0213'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0214, :label => qtext('0214'),
+      :collection => coll('0214'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0215, :label => qtext('0215'),
+      :collection => coll('0215'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0216, :label => qtext('0216'),
+      :collection => coll('0216'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0217, :label => qtext('0217'),
+      :collection => coll('0217'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0218, :label => qtext('0218'),
+      :collection => coll('0218'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0219, :label => qtext('0219'),
+      :collection => coll('0219'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0220, :label => qtext('0220'),
+      :collection => coll('0220'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0221, :label => qtext('0221'),
+      :collection => coll('0221'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0222, :label => qtext('0222'),
+      :collection => coll('0222'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0223, :label => qtext('0223'),
+      :collection => coll('0223'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0224, :label => qtext('0224'),
+      :collection => coll('0224'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0225, :label => qtext('0225'),
+      :collection => coll('0225'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0226, :label => qtext('0226'),
+      :collection => coll('0226'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+    <%= f.input :q_0227, :label => qtext('0227'),
+      :collection => coll('0227'), :as => :radio_buttons,
+      :label_method => :last, :value_method => :first %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "ส่งแบบสำรวจ HPI", :class => "btn btn-lg btn-success hpi_footer" %>
+  </div>
+<% end %>
+</div>
+

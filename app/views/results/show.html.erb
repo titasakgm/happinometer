@@ -1,0 +1,43 @@
+<table class="list_table">
+  <tr>
+    <% (0..@questions.length).each do |n| %>
+      <th><%= @questions[n]  %></th>
+    <% end %>
+  </tr>
+
+  <tr>
+    <% (0..@responses.length).each do |n| %>
+      <td><%= @responses[n] %></td>
+    <% end %>
+  </tr>
+</table>
+
+<br />
+<button id="csv_btn">Export to CSV</button>
+<br/><br/>
+<%= link_to "Back", results_path %>
+
+<script type="text/javascript">
+    var csv_btn = document.getElementById("csv_btn");
+    csv_btn.addEventListener('click', function(){
+        var table = document.getElementsByClassName('list_table')[0].innerHTML;
+        var data = table.replace(/<tbody>/g,'')
+            .replace(/<\/tbody>/g, '')
+            .replace(/<th>/g, '')
+            .replace(/<\/th>/g, ',')
+            .replace(/<td>/g, '')
+            .replace(/<\/td>/g, ',')
+            .replace(/<tr>/g, '')
+            .replace(/<\/tr>/g, '\r\n')
+            .replace(/\t/g, '')
+            .replace(/\n/g, '');
+        var csv = "data:text/csv;charset=utf-8," + data;
+        var data = encodeURI(csv);
+        var link = document.createElement('a');
+        link.setAttribute('href', data);
+        link.setAttribute('download', 'my-survey.csv');
+        link.click();
+    });
+</script>
+
+

@@ -1,0 +1,33 @@
+<span class="qr-fb">
+  <img id="qr-happino" src="http://happinometer.moph.go.th:8080/img/qr-happino.png" />
+  <a href="http://www.facebook.com/HR4Health" target="_blank">
+    <img id="fb-happino" src="http://happinometer.moph.go.th:8080/img/fb-hr4health.png" />
+  </a>
+</span>
+
+<div class="col-md-offset-1 col-md-10">
+<table class="table">
+  <tbody>
+  <tr>
+    <th>
+      <img src="/assets/intro-survey.png" />
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <span>
+        <%= link_to "ลงทะเบียน", new_user_registration_path,
+          {:method => :get, :class => "btn btn-warning btn-xl text-white"} %>
+        <%= link_to "เข้าสู่ระบบ", surveyor_path, 
+          {:method => :get, :class => "btn btn-success btn-xl text-white"} %>
+      </span>
+    </th>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+<script type="text/javascript">
+  var o = document.getElementById("menu");
+  o.hidden = true;
+</script>
